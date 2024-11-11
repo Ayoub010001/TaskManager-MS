@@ -5,13 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Builder
 @Entity
-public class Account {
+public class Account implements Serializable {
     @Id
     @GeneratedValue
     private Long id;

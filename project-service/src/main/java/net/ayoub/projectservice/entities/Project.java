@@ -4,6 +4,7 @@ package net.ayoub.projectservice.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.*;
 
 @AllArgsConstructor
@@ -18,4 +19,7 @@ public class Project {
     private Long projectId;
     private String projectName;
     private String projectDescription;
+    private Long accountId;
+    @Transient
+    private Account account;
 }

@@ -22,7 +22,7 @@ public class ProjectRestController {
         return "test";
     }
 
-    @GetMapping("/project/{projectId}")
+    @GetMapping("/projects/{projectId}")
     public ResponseEntity<Project> getProjectById(@PathVariable Long projectId){
         Project project = projectService.getProject(projectId);
         if(project == null){

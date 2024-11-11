@@ -5,9 +5,11 @@ import net.ayoub.projectservice.repositories.ProjectRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableFeignClients
 public class ProjectServiceApplication {
 
     public static void main(String[] args) {
@@ -21,12 +23,14 @@ public class ProjectServiceApplication {
                     .builder()
                     .projectName("Micro Service Project")
                     .projectDescription("Micro Service Project Description")
+                    .accountId(1L)
                     .build();
             projectRepository.save(project1);
             Project project2 = Project
                     .builder()
                     .projectName("Agile Project")
                     .projectDescription("Agile Project Description")
+                    .accountId(1L)
                     .build();
 
             projectRepository.save(project2);

@@ -1,7 +1,9 @@
 package net.ayoub.projectservice.services;
 
+import net.ayoub.projectservice.entities.Account;
 import net.ayoub.projectservice.entities.Project;
 import net.ayoub.projectservice.repositories.ProjectRepository;
+import net.ayoub.projectservice.restClient.AccountRestClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,14 +13,20 @@ import java.util.List;
 @Transactional
 public class ProjectServiceImpl implements ProjectService {
 
-    ProjectRepository projectRepository;
-    public ProjectServiceImpl(ProjectRepository projectRepository) {
+    private final ProjectRepository projectRepository;
+    private final AccountRestClient accountRestClient;
+
+    public ProjectServiceImpl(ProjectRepository projectRepository, AccountRestClient accountRestClient) {
         this.projectRepository = projectRepository;
+        this.accountRestClient = accountRestClient;
     }
 
     @Override
     public Project getProject(Long projectId) {
-        return projectRepository.findById(projectId).orElse(null);
+        Project project = projectRepository.findById(projectId).orElse(null);
+        Account account = accountRestClient.getAccount(project.getAccountId());
+        project.setAccount(account);
+        return project;
     }
 
     @Override
