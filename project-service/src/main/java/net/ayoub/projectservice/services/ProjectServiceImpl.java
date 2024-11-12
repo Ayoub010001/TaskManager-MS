@@ -33,4 +33,21 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
+
+    @Override
+    public Project createProject(Project project) {
+        Account account = accountRestClient.getAccount(project.getAccountId());
+        project.setAccount(account);
+        return projectRepository.save(project);
+    }
+
+    @Override
+    public Project updateProject(Project project) {
+        return projectRepository.save(project);
+    }
+
+    @Override
+    public void deleteProject(Long projectId) {
+        projectRepository.deleteById(projectId);
+    }
 }

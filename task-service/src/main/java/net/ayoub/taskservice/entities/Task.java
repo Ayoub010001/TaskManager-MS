@@ -17,4 +17,8 @@ public class Task {
     private String taskDescription;
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
+    private Long projectId;
+
+    @Transient
+    private Project project;
 }

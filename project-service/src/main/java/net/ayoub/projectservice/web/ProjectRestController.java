@@ -1,5 +1,6 @@
 package net.ayoub.projectservice.web;
 
+import net.ayoub.projectservice.entities.Account;
 import net.ayoub.projectservice.entities.Project;
 import net.ayoub.projectservice.services.ProjectService;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +32,34 @@ public class ProjectRestController {
         return ResponseEntity.ok(project);
     }
 
-    @GetMapping("/project")
+    @GetMapping("/projects")
     public ResponseEntity<List<Project>> getAllProjects(){
-        List<Project> project = projectService.getAllProjects();
-        if(project == null){
+        List<Project> projects = projectService.getAllProjects();
+        if(projects == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(project);
+        List<Project> projectsAndUser = projects
+                .stream()
+                .map(p -> projectService.getProject(p.getProjectId()))
+                .toList();
+        return ResponseEntity.ok(projectsAndUser);
+    }
+
+    @PostMapping("/projects")
+    public ResponseEntity<Project> createProject(@RequestBody Project project){
+        Project prj = projectService.createProject(project);
+        return ResponseEntity.ok(prj);
+    }
+
+    @PutMapping("/projects")
+    public ResponseEntity<Project> updateProject(@RequestBody Project project){
+        Project prj = projectService.updateProject(project);
+        return ResponseEntity.ok(prj);
+    }
+
+    @DeleteMapping("/projects/{projectId}")
+    public ResponseEntity<Void> deleteProject(@PathVariable Long projectId){
+        projectService.deleteProject(projectId);
+        return ResponseEntity.ok(null);
     }
 }

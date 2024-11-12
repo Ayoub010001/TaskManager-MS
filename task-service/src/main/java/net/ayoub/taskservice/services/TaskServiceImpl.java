@@ -30,5 +30,20 @@ public class TaskServiceImpl implements TaskService {
     public Task saveTask(Task task) {
         return taskRepository.save(task);
     }
+
+    @Override
+    public Task updateTask(Task task) {
+        return null;
+    }
+
+    @Override
+    public void deleteTask(Long taskId) {
+
+    }
+
+    @Override
+    public Task addTaskToProject(Long projectId, Long taskId) {
+        return null;
+    }
 }
 
