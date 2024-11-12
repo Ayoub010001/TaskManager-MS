@@ -15,7 +15,6 @@ public class TaskServiceImpl implements TaskService {
         this.taskRepository = taskRepository;
     }
 
-
     @Override
     public Task getTask(Long taskId) {
         return taskRepository.findById(taskId).orElse(null);
@@ -33,17 +32,17 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task updateTask(Task task) {
-        return null;
+        return taskRepository.save(task);
     }
 
     @Override
     public void deleteTask(Long taskId) {
-
+        taskRepository.deleteById(taskId);
     }
 
     @Override
-    public Task addTaskToProject(Long projectId, Long taskId) {
-        return null;
+    public List<Task> getTasksByProjectId(Long projectId) {
+        return taskRepository.findAllByProjectId(projectId);
     }
 }
 

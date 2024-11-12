@@ -10,5 +10,5 @@ public interface TaskService {
     Task saveTask(Task task);
     Task updateTask(Task task);
     void deleteTask(Long taskId);
-    Task addTaskToProject(Long projectId, Long taskId);
+    List<Task> getTasksByProjectId(Long projectId);
 }

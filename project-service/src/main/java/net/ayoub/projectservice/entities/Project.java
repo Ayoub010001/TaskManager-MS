@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -22,4 +24,6 @@ public class Project {
     private Long accountId;
     @Transient
     private Account account;
+    @Transient
+    private List<Task> tasks;
 }

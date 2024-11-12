@@ -23,17 +23,20 @@ public class TaskServiceApplication {
                     .taskName("Service Project Rest Api")
                     .taskDescription("Create rest apis")
                     .taskStatus(TaskStatus.IN_PROGRESS)
+                    .projectId(1L)
                     .build();
             Task taskService = Task
                     .builder()
                     .taskName("Service Task Rest Api")
                     .taskDescription("Create rest apis")
                     .taskStatus(TaskStatus.IN_PROGRESS)
+                    .projectId(1L)
                     .build();
             Task userService = Task
                     .builder()
                     .taskName("Service User Rest Api")
                     .taskDescription("Create rest apis")
+                    .projectId(2L)
                     .taskStatus(TaskStatus.TO_DO)
                     .build();
 

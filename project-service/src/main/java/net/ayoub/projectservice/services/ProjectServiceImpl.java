@@ -2,8 +2,10 @@ package net.ayoub.projectservice.services;
 
 import net.ayoub.projectservice.entities.Account;
 import net.ayoub.projectservice.entities.Project;
+import net.ayoub.projectservice.entities.Task;
 import net.ayoub.projectservice.repositories.ProjectRepository;
 import net.ayoub.projectservice.restClient.AccountRestClient;
+import net.ayoub.projectservice.restClient.TaskRestClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,17 +17,21 @@ public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository projectRepository;
     private final AccountRestClient accountRestClient;
+    private final TaskRestClient taskRestClient;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository, AccountRestClient accountRestClient) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, AccountRestClient accountRestClient, TaskRestClient taskRestClient) {
         this.projectRepository = projectRepository;
         this.accountRestClient = accountRestClient;
+        this.taskRestClient = taskRestClient;
     }
 
     @Override
     public Project getProject(Long projectId) {
         Project project = projectRepository.findById(projectId).orElse(null);
         Account account = accountRestClient.getAccount(project.getAccountId());
+        List<Task> tasks = taskRestClient.getTasksByProject(project.getAccountId());
         project.setAccount(account);
+        project.setTasks(tasks);
         return project;
     }
 
