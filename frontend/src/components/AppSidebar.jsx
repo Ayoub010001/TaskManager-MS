@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sidebar"
 import { Calendar, Home, Inbox, Search, Settings ,User ,Plus  } from "lucide-react"
 import {Button} from "@/components/ui/button.jsx";
+import CreateDialogBtn from "@/components/CreateDialogBtn.jsx";
 
 
 export default function AppSidebar(){
@@ -60,10 +61,7 @@ export default function AppSidebar(){
                             ))}
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
-                                    <Button className="w-full">
-                                        <Plus />
-                                        <span>Create Project</span>
-                                    </Button>
+                                    <CreateDialogBtn />
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                         </SidebarMenu>
@@ -71,12 +69,7 @@ export default function AppSidebar(){
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter>
-                    <SidebarMenuButton asChild>
-                        <Button href="#">
-                            <User></User>
-                            <span>Profile</span>
-                        </Button>
-                    </SidebarMenuButton>
+
             </SidebarFooter>
         </Sidebar>
     )
