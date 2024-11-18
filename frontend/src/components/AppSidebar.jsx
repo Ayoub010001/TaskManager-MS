@@ -8,40 +8,23 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Calendar, Home, Inbox, Search, Settings ,User ,Plus  } from "lucide-react"
-import {Button} from "@/components/ui/button.jsx";
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 import CreateDialogBtn from "@/components/CreateDialogBtn.jsx";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { axiosProjects, axiosTasks} from "../axiosClient"
 
 
 export default function AppSidebar(){
-    // Menu items.
-    const items = [
-        {
-            title: "Project 1",
-            url: "#",
-            icon: Home,
-        },
-        {
-            title: "Project 2",
-            url: "#",
-            icon: Inbox,
-        },
-        {
-            title: "Project 3",
-            url: "#",
-            icon: Calendar,
-        },
-        {
-            title: "Project 4",
-            url: "#",
-            icon: Search,
-        },
-        {
-            title: "Project 5",
-            url: "#",
-            icon: Settings,
-        },
-    ]
+
+    const [projects, setProjects] = useState([]);
+
+    useEffect(()=>{
+        axiosProjects.get("/projects").then(projects => {
+                setProjects(projects.data);
+        })
+    },[])
+
     return (
         <Sidebar>
             <SidebarContent>
@@ -49,27 +32,25 @@ export default function AppSidebar(){
                     <SidebarGroupLabel>Application</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
+                            {projects.map((item,key) => (
+                                <SidebarMenuItem key={key}>
                                     <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon />
-                                            <span>{item.title}</span>
-                                        </a>
+                                        <Link to={`/${item.projectId}`} aria-label={item.projectName}>
+                                            <Settings />
+                                            <span>{item.projectName}</span>
+                                        </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}
                             <SidebarMenuItem>
-                                <SidebarMenuButton asChild>
-                                    <CreateDialogBtn />
-                                </SidebarMenuButton>
+                                    <CreateDialogBtn setProjects={setProjects}/>
                             </SidebarMenuItem>
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter>
-
+                we will add settings here
             </SidebarFooter>
         </Sidebar>
     )
