@@ -38,7 +38,6 @@ public class TaskRestController {
     @GetMapping("/tasks/project/{projectId}")
     public ResponseEntity<List<Task>> getTasksByPrjId(@PathVariable Long projectId){
         List<Task> tasks = taskService.getTasksByProjectId(projectId);
-        System.out.println(tasks.get(0));
         if(tasks == null){
             return ResponseEntity.notFound().build();
         }

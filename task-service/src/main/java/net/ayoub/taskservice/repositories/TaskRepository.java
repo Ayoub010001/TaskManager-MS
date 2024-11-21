@@ -2,6 +2,7 @@ package net.ayoub.taskservice.repositories;
 
 import net.ayoub.taskservice.entities.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

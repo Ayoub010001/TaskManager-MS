@@ -49,6 +49,7 @@ export default function CreateTaskDialog({ projectId, setTasks }) {
         
   };
 
+
   return (
     <>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -116,7 +117,7 @@ export default function CreateTaskDialog({ projectId, setTasks }) {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="TO_DO">To Do</SelectItem>
-                    <SelectItem value="IN_PROGRSS">In Progress</SelectItem>
+                    <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
                     <SelectItem value="COMPLETED">Completed</SelectItem>
                   </SelectContent>
                 </Select>

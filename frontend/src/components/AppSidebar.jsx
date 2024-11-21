@@ -8,7 +8,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Trash , FolderDot ,Settings , X } from "lucide-react"
 import CreateDialogBtn from "@/components/CreateDialogBtn.jsx";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -34,11 +34,12 @@ export default function AppSidebar(){
                         <SidebarMenu>
                             {projects.map((item,key) => (
                                 <SidebarMenuItem key={key}>
-                                    <SidebarMenuButton asChild>
-                                        <Link to={`/${item.projectId}`} aria-label={item.projectName}>
-                                            <Settings />
-                                            <span>{item.projectName}</span>
-                                        </Link>
+                                    <SidebarMenuButton asChild className="p-2">
+                                            <Link className=" relative" to={`/${item.projectId}`} aria-label={item.projectName}>
+                                                <FolderDot />
+                                                <span>{item.projectName}</span>
+                                                <X  className=" absolute right-2"/>
+                                            </Link>           
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}

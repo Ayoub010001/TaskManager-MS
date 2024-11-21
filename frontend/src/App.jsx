@@ -6,6 +6,7 @@ import {
 import AppSidebar from "@/components/AppSidebar.jsx";
 import AppTasks from "@/components/AppTasks.jsx";
 import { Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <AppSidebar />
       <SidebarTrigger />
       <Routes>
-        <Route path="/" element={<AppTasks />} />
+        {/* <Route path="/" element={<AppTasks />} /> */}
+        <Route path="/" element={<Navigate to="/1" replace />} />
         <Route path="/:id" element={<AppTasks />} />
       </Routes>
     </SidebarProvider>

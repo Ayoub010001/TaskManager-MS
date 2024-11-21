@@ -11,6 +11,21 @@ import { Button } from "@/components/ui/button.jsx";
 
 // eslint-disable-next-line react/prop-types
 export default function LineOfTasks({ headerTitle, tasks }) {
+
+  let tasksFiltered = [];
+  if(headerTitle === "TO DO"){
+    tasksFiltered = tasks.filter((task) => task.taskStatus == "TO_DO")
+  }
+  if(headerTitle === "IN PROGRESS"){
+    tasksFiltered = tasks.filter((task) => task.taskStatus == "IN_PROGRESS")
+  }
+  if(headerTitle === "COMPLETED"){
+    tasksFiltered = tasks.filter((task) => task.taskStatus == "COMPLETED")
+  }
+
+  console.log("Tasks")
+  console.log(tasks)
+
   return (
     <article className="bg-gray-200 p-2 rounded-sm min-h-[80vh]">
       <header>
@@ -20,7 +35,7 @@ export default function LineOfTasks({ headerTitle, tasks }) {
       </header>
       <main className="p-2">
         <div className="flex flex-col gap-2">
-          {tasks.map((task, key) => {
+          {tasksFiltered.map((task, key) => {
             return (
               <Card className="gap-0 p-2" key={key}>
                 <CardHeader className="p-2">
