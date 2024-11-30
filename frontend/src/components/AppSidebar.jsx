@@ -8,7 +8,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Trash , FolderDot ,Settings , X } from "lucide-react"
+import { Trash , FolderDot ,Settings , EllipsisVertical  } from "lucide-react"
 import CreateDialogBtn from "@/components/CreateDialogBtn.jsx";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -38,7 +38,7 @@ export default function AppSidebar(){
                                             <Link className=" relative" to={`/${item.projectId}`} aria-label={item.projectName}>
                                                 <FolderDot />
                                                 <span>{item.projectName}</span>
-                                                <X  className=" absolute right-2"/>
+                                                <EllipsisVertical className=" absolute right-2"/>
                                             </Link>           
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>

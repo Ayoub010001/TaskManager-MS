@@ -8,9 +8,11 @@ import {
 } from "@/components/ui/card";
 import { Edit } from "lucide-react";
 import { Button } from "@/components/ui/button.jsx";
+import UpdateTaskBtn from "@/components/UpdateTaskBtn.jsx";
+import DeleteTaskBtn from "@/components/DeleteTaskBtn.jsx";
 
 // eslint-disable-next-line react/prop-types
-export default function LineOfTasks({ headerTitle, tasks }) {
+export default function LineOfTasks({ headerTitle, tasks ,setTasks }) {
 
   let tasksFiltered = [];
   if(headerTitle === "TO DO"){
@@ -44,10 +46,9 @@ export default function LineOfTasks({ headerTitle, tasks }) {
                   </CardTitle>
                   <CardDescription>{task.taskStatus}</CardDescription>
                 </CardHeader>
-                <CardFooter className="px-2 py-0">
-                  <Button>
-                    <Edit></Edit> Edit
-                  </Button>
+                <CardFooter className="px-2 py-0 flex gap-2">
+                  <UpdateTaskBtn task={task} setTasks={setTasks}/>
+                  <DeleteTaskBtn task={task} setTasks={setTasks}/>
                 </CardFooter>
               </Card>
             );

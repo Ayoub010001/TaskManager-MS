@@ -1,0 +1,82 @@
+services:
+  task-manager-discovery-service:
+    build: ./discovery-service
+    container_name: task-manager-discovery-service
+    ports:
+      - 8761:8761
+    expose:
+      - 8761
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 20s
+      retries: 5
+  keycloak:
+    container_name: keycloak-task-manager-service
+    image: quay.io/keycloak/keycloak:latest
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command:
+      - "start-dev"
+  task-manager-user-service:
+    build: ./user-service
+    container_name: task-manager-user-service
+    ports:
+      - 8082:8082
+    expose:
+      - 8082
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8082/actuator/health" ]
+      interval: 20s
+      retries: 5
+    environment:
+      - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
+    depends_on:
+      task-manager-discovery-service:
+        condition:  service_healthy
+  task-manager-project-service:
+    build: ./project-service
+    container_name: task-manager-project-service
+    ports:
+      - 8083:8083
+    expose:
+      - 8083
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8083/actuator/health" ]
+      interval: 20s
+      retries: 5
+    environment:
+      - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
+    depends_on:
+      task-manager-user-service:
+        condition: service_healthy
+  task-manager-task-service:
+    build: ./task-service
+    container_name: task-manager-task-service
+    ports:
+      - 8081:8081
+    expose:
+      - 8081
+    environment:
+      - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
+    depends_on:
+      task-manager-project-service:
+        condition: service_healthy
+  task-manager-gateway-service:
+    build: ./gateway-service
+    container_name: task-manager-gateway-service
+    ports:
+      - 9999:9999
+    expose:
+      - 9999
+    environment:
+      - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
+      - KEYCLOAK_REALM_URL=http://keycloak:8080/realms/taskmanager-realm
+      - KEYCLOAK_CERTIF_URL=http://keycloak:8080/realms/taskmanager-realm/protocol/openid-connect/certs
+    depends_on:
+      task-manager-project-service:
+        condition: service_healthy

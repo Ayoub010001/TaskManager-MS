@@ -3,6 +3,7 @@ package net.ayoub.userservice.web;
 import net.ayoub.userservice.entities.Account;
 import net.ayoub.userservice.services.AccountService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,5 +34,10 @@ public class AccountRestController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(account);
+    }
+    //Context of security
+    @GetMapping("/auth")
+    public Authentication getAuthentication(Authentication authentication){
+        return authentication;
     }
 }
