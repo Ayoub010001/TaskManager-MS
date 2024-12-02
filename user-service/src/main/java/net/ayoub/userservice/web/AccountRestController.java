@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class AccountRestController {
-    private AccountService accountService;
+    private final AccountService accountService;
 
     public AccountRestController(AccountService accountService) {
         this.accountService = accountService;
@@ -35,9 +35,11 @@ public class AccountRestController {
         }
         return ResponseEntity.ok(account);
     }
+
     //Context of security
     @GetMapping("/auth")
     public Authentication getAuthentication(Authentication authentication){
         return authentication;
     }
+
 }

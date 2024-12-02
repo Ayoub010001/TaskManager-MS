@@ -1,4 +1,4 @@
-package net.ayoub.userservice.security;
+package net.ayoub.taskservice.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
