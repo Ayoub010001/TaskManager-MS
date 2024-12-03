@@ -15,8 +15,7 @@ import java.io.Serializable;
 @Entity
 public class Account implements Serializable {
     @Id
-    @GeneratedValue
-    private Long id;
+    private String id;
     private String username;
     private String email;
     private String password;

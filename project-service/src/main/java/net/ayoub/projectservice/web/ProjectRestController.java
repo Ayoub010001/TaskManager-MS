@@ -4,6 +4,8 @@ import net.ayoub.projectservice.entities.Account;
 import net.ayoub.projectservice.entities.Project;
 import net.ayoub.projectservice.services.ProjectService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,11 +18,6 @@ public class ProjectRestController {
 
     public ProjectRestController(ProjectService projectService) {
         this.projectService = projectService;
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "test";
     }
 
     @GetMapping("/projects/{projectId}")
@@ -61,5 +58,11 @@ public class ProjectRestController {
     public ResponseEntity<Void> deleteProject(@PathVariable Long projectId){
         projectService.deleteProject(projectId);
         return ResponseEntity.ok(null);
+    }
+
+    //Context of security
+    @GetMapping("/auth")
+    public Authentication getAuthentication(Authentication authentication){
+        return authentication;
     }
 }

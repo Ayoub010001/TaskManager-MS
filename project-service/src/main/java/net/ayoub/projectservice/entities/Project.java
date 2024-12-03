@@ -21,7 +21,7 @@ public class Project {
     private Long projectId;
     private String projectName;
     private String projectDescription;
-    private Long accountId;
+    private String accountId;
     @Transient
     private Account account;
     @Transient

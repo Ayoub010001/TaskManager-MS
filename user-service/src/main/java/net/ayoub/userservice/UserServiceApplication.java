@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.UUID;
+
 @SpringBootApplication
 public class UserServiceApplication {
 
@@ -20,18 +22,21 @@ public class UserServiceApplication {
         return args -> {
             Account aub = Account
                     .builder()
+                    .id("aub1234")
                     .email("aub@aub.aub")
                     .username("aub")
                     .password(PasswordEncoder().encode("aub"))
                     .build();
             Account asmaa = Account
                     .builder()
+                    .id("asmaa1234")
                     .email("asmaa@asmaa.asmaa")
                     .username("asma")
                     .password(PasswordEncoder().encode("asmaa"))
                     .build();
             Account oumaima = Account
                     .builder()
+                    .id("oumaima1234")
                     .email("oumaima@oumaima.oumaima")
                     .username("oumaima")
                     .password(PasswordEncoder().encode("oumaima"))

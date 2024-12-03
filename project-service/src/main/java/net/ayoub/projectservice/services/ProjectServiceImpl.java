@@ -6,6 +6,7 @@ import net.ayoub.projectservice.entities.Task;
 import net.ayoub.projectservice.repositories.ProjectRepository;
 import net.ayoub.projectservice.restClient.AccountRestClient;
 import net.ayoub.projectservice.restClient.TaskRestClient;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +30,7 @@ public class ProjectServiceImpl implements ProjectService {
     public Project getProject(Long projectId) {
         Project project = projectRepository.findById(projectId).orElse(null);
         Account account = accountRestClient.getAccount(project.getAccountId());
-        List<Task> tasks = taskRestClient.getTasksByProject(project.getAccountId());
+        List<Task> tasks = taskRestClient.getTasksByProject(project.getProjectId());
         project.setAccount(account);
         project.setTasks(tasks);
         return project;

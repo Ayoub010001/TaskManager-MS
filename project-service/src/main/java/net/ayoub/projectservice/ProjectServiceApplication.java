@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
+import java.util.UUID;
+
 @SpringBootApplication
 @EnableFeignClients
 public class ProjectServiceApplication {
@@ -23,14 +25,14 @@ public class ProjectServiceApplication {
                     .builder()
                     .projectName("Micro Service Project")
                     .projectDescription("Micro Service Project Description")
-                    .accountId(1L)
+                    .accountId("aub1234")
                     .build();
             projectRepository.save(project1);
             Project project2 = Project
                     .builder()
                     .projectName("Agile Project")
                     .projectDescription("Agile Project Description")
-                    .accountId(1L)
+                    .accountId("aub1234")
                     .build();
 
             projectRepository.save(project2);

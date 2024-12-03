@@ -1,3 +1,4 @@
+version: '3.3'
 services:
   task-manager-discovery-service:
     build: ./discovery-service
@@ -42,6 +43,8 @@ services:
       retries: 5
     environment:
       - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
+      - KEYCLOAK_ISSUER_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm
+      - KEYCLOAK_JWK_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm/protocol/openid-connect/certs
     depends_on:
       task-manager-discovery-service:
         condition:  service_healthy
@@ -60,6 +63,8 @@ services:
       retries: 5
     environment:
       - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
+      - KEYCLOAK_ISSUER_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm
+      - KEYCLOAK_JWK_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm/protocol/openid-connect/certs
     depends_on:
       task-manager-user-service:
         condition: service_healthy
@@ -74,6 +79,8 @@ services:
       - 8081
     environment:
       - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
+      - KEYCLOAK_ISSUER_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm
+      - KEYCLOAK_JWK_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm/protocol/openid-connect/certs
     depends_on:
       task-manager-project-service:
         condition: service_healthy
@@ -88,8 +95,8 @@ services:
       - 9999
     environment:
       - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
-      - KEYCLOAK_REALM_URL=http://keycloak-task-manager-service:8080/realms/taskmanager-realm
-      - KEYCLOAK_CERTIF_URL=http://keycloak-task-manager-service:8080/realms/taskmanager-realm/protocol/openid-connect/certs
+      - KEYCLOAK_ISSUER_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm
+      - KEYCLOAK_JWK_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm/protocol/openid-connect/certs
     depends_on:
       task-manager-discovery-service:
         condition: service_healthy
