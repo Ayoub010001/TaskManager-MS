@@ -4,8 +4,8 @@ import net.ayoub.projectservice.entities.Account;
 import net.ayoub.projectservice.entities.Project;
 import net.ayoub.projectservice.services.ProjectService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.jwt.Jwt;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,8 +61,8 @@ public class ProjectRestController {
     }
 
     //Context of security
-    @GetMapping("/auth")
-    public Authentication getAuthentication(Authentication authentication){
-        return authentication;
-    }
+//    @GetMapping("/auth")
+//    public Authentication getAuthentication(Authentication authentication){
+//        return authentication;
+//    }
 }

@@ -1,5 +1,5 @@
 package net.ayoub.userservice.security;
-
+/*
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.springframework.context.annotation.Configuration;
@@ -45,3 +45,4 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
         return roles.stream().map(role -> new SimpleGrantedAuthority(role)).collect(Collectors.toSet());
     }
 }
+*/

@@ -18,6 +18,11 @@ public class TaskServiceApplication {
     @Bean
     public CommandLineRunner commandLineRunner(TaskRepository taskRepository) {
         return args -> {
+//            String issuer_uri = System.getenv("KEYCLOAK_ISSUER_URI");
+//            String jwk_uri = System.getenv("KEYCLOAK_JWK_URI");
+//            System.out.println("KEYCLOAK_ISSUER_URI: " + issuer_uri);
+//            System.out.println("KEYCLOAK_JWK_URI: " + jwk_uri);
+
             Task prjService = Task
                     .builder()
                     .taskName("Service Project Rest Api")

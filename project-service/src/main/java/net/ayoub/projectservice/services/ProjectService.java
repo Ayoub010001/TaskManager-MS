@@ -2,7 +2,7 @@ package net.ayoub.projectservice.services;
 
 import net.ayoub.projectservice.entities.Account;
 import net.ayoub.projectservice.entities.Project;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.Authentication;
 
 import java.util.List;
 

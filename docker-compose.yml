@@ -1,5 +1,24 @@
-version: '3.3'
 services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-5.7
+    restart: always                       # always restart
+    environment:
+      MYSQL_DATABASE: 'task_manager'              # name of database
+      #MYSQL_USER: 'root'                # sample is the name of user
+      #MYSQL_PASSWORD: ''          # password for sample user
+      MYSQL_ROOT_PASSWORD: 'password'     # password for root user
+    ports:
+      - '3306:3306'                       # host port 3306 is mapper to docker port 3306
+    expose:
+      - '3306'
+    #healthcheck:
+     # test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      #interval: 10s
+      #retries: 6
+    volumes:
+      - mysql-db:/var/lib/mysql
+
   task-manager-discovery-service:
     build: ./discovery-service
     container_name: task-manager-discovery-service
@@ -15,7 +34,7 @@ services:
       - task-manager-network
   keycloak-task-manager-service:
     container_name: keycloak-task-manager-service
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:26.0.5
     ports:
       - 8080:8080
     expose:
@@ -95,16 +114,14 @@ services:
       - 9999
     environment:
       - DISCOVERY_SERVICE_URL=http://task-manager-discovery-service:8761/eureka
-      - KEYCLOAK_ISSUER_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm
-      - KEYCLOAK_JWK_URI=http://keycloak-task-manager-service:8080/realms/taskmanager-realm/protocol/openid-connect/certs
     depends_on:
       task-manager-discovery-service:
         condition: service_healthy
     networks:
       - task-manager-network
-
 volumes:
   keycloak_data:
+  mysql-db:
 
 networks:
   task-manager-network:

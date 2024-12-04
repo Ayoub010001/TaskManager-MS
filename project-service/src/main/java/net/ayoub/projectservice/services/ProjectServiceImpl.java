@@ -6,7 +6,7 @@ import net.ayoub.projectservice.entities.Task;
 import net.ayoub.projectservice.repositories.ProjectRepository;
 import net.ayoub.projectservice.restClient.AccountRestClient;
 import net.ayoub.projectservice.restClient.TaskRestClient;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,5 +1,5 @@
 package net.ayoub.projectservice.interceptors;
-
+/*
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.springframework.security.core.Authentication;
@@ -19,3 +19,4 @@ public class FeignInterceptor  implements RequestInterceptor {
         requestTemplate.header("Authorization", "Bearer " + jwtAccessToken);
     }
 }
+*/

@@ -21,6 +21,10 @@ public class ProjectServiceApplication {
     @Bean
     CommandLineRunner init(ProjectRepository projectRepository) {
         return args -> {
+//            String issuer_uri = System.getenv("KEYCLOAK_ISSUER_URI");
+//            String jwk_uri = System.getenv("KEYCLOAK_JWK_URI");
+//            System.out.println("KEYCLOAK_ISSUER_URI: " + issuer_uri);
+//            System.out.println("KEYCLOAK_JWK_URI: " + jwk_uri);
             Project project1 = Project
                     .builder()
                     .projectName("Micro Service Project")
